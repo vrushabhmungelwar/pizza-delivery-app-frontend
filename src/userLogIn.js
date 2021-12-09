@@ -84,6 +84,7 @@ export function UserLogIn() {
       `https://pizza-by-vrushabh.herokuapp.com/user/signin`,
       {
         method: "POST",
+        mode: "no-cors",
         body: JSON.stringify(values),
         headers: {
           "Content-Type": "application/json",
