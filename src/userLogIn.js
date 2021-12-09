@@ -80,13 +80,17 @@ export function UserLogIn() {
     });
 
   const checkCredentials = async (values) => {
-    const response = await fetch(`https://pizza-backend-vrushabh.herokuapp.com/user/signin`, {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://pizza-backend-vrushabh.herokuapp.com/user/signin`,
+      {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     // console.log(values);
     const json = await response.json();
     console.log(json);
