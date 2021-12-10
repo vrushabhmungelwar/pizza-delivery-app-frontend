@@ -1,22 +1,30 @@
-export function SuccessfulLogIn() {
+import { useState, useEffect } from "react";
+import { API_URL } from "./global-constants";
+
+function Pizza({ name, img }) {
   return (
     <div>
-      <h1>login successful</h1>
-
-      <div>
-<h2>Maggareta</h2>
-<h2>Bacon</h2>
-<h2>Chili pepper</h2>
-<h2>Mushrooms</h2>
-<h2>Vegetarian</h2>
-<h2>Shrimp</h2>
-<h2>salami</h2>
-
-
-      </div>
+      <img className="pizza-poster" src={img} alt={name} />
+      <h3>{name}</h3>
     </div>
+  );
+}
 
+export function SuccessfulLogIn() {
+  const [pizzas, setPizzas] = useState([]);
 
+  const getMovies = () => {
+    fetch(`${API_URL}/pizzalist`)
+      .then((data) => data.json())
+      .then((mvs) => setPizzas(mvs));
+  };
+  useEffect(getMovies, []);
 
+  return (
+    <section className="pizza-container">
+      {pizzas.map(({ name, img, _id }) => (
+        <Pizza key={_id} name={name} img={img} />
+      ))}
+    </section>
   );
 }

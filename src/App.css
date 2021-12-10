@@ -11,3 +11,15 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.pizza-poster {
+  height: 10rem;
+  width: 10rem;
+}
+
+.pizza-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
