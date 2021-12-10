@@ -8,12 +8,13 @@ import { SignUp } from "./signUp";
 import { Success } from "./success";
 import { SuccessfulLogIn } from "./pizza";
 import { DashBoard } from "./adminDashboard";
+
 export default function App() {
   const history = useHistory();
 
   return (
     <div className="App">
-      <h2>Welcome to Pizza Mania</h2>
+      <h2 className="header">Welcome to Pizza Mania</h2>
       <Button
         variant="text"
         color="inherit"

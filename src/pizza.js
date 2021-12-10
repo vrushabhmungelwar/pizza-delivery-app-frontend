@@ -3,7 +3,7 @@ import { API_URL } from "./global-constants";
 
 function Pizza({ name, img }) {
   return (
-    <div>
+    <div className="pizza">
       <img className="pizza-poster" src={img} alt={name} />
       <h3>{name}</h3>
     </div>

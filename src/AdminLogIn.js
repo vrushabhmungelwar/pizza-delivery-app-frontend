@@ -2,6 +2,10 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { API_URL } from "./global-constants";
 import { useHistory } from "react-router-dom";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+
 const formValidationSchema = yup.object({
   email: yup
     .string()
@@ -45,31 +49,50 @@ export function AdminLogIn() {
     }
   };
   return (
-    <div>
-      <h2>hello admin</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          id="email"
-          name="email"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="email"
-          placeholder="Enter your email"
-        />
-        {errors.email && touched.email && errors.email}
-        <input
-          id="password"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="password"
-          placeholder="Enter your password"
-        />
-        {errors.password && touched.password ? errors.password : ""}
-        <button type="submit">Login</button>
-      </form>
+ 
+    <div className="signin-container">
+      <Box
+        sx={{
+          width: 300,
+          height: 220,
+          backgroundColor: "primary",
+        }}
+      >
+        <div>
+          <h2>Admin</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="input-container">
+              <TextField
+                id="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                label="email"
+                error={errors.email && touched.email}
+                helperText={errors.email && touched.email && errors.email}
+                variant="standard"
+              />
+
+              <TextField
+                id="password"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                label="password"
+                type="password"
+                error={errors.password && touched.password}
+                helperText={
+                  errors.password && touched.password && errors.password
+                }
+                variant="standard"
+              />
+            </div>
+            <Button type="submit">Login</Button>
+          </form>
+        </div>
+      </Box>
     </div>
   );
 }
