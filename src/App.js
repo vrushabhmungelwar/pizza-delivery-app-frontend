@@ -2,23 +2,17 @@ import "./App.css";
 import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { Switch, Route } from "react-router-dom";
-// import { LoginPage } from "./LoginPage";
 import { AdminLogIn } from "./AdminLogIn";
 import { UserLogIn } from "./userLogIn";
 import { SignUp } from "./signUp";
 import { Success } from "./success";
-import {SuccessfulLogIn} from "./pizza"
+import { SuccessfulLogIn } from "./pizza";
+
 export default function App() {
   const history = useHistory();
 
   return (
-    <div
-   
-      className="App"
-    >
-      {/* <Button variant="text" color="inherit" onClick={() => history.push("/")}>
-        Login Page
-      </Button> */}
+    <div className="App">
       <h2>Welcome to Pizza Mania</h2>
       <Button
         variant="text"
@@ -43,9 +37,6 @@ export default function App() {
       </Button>
 
       <Switch>
-        {/* <Route exact path="/">
-          <LoginPage />
-        </Route> */}
         <Route exact path="/AdminLogIn">
           <AdminLogIn />
         </Route>

@@ -7,7 +7,7 @@ export function Success() {
   return (
     <div>
       <h1>Account Created</h1>
-      
+
       <Button
         variant="text"
         color="inherit"

@@ -6,14 +6,13 @@ import { useHistory } from "react-router-dom";
 const formValidationSchema = yup.object({
   email: yup
     .string()
-    .min(5, "Need a bigger email😒")
-    .required("why not fill this email😊")
+    .min(5, "email is too short")
+    .required("email can't be blank")
     .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "pattern not matches"),
   password: yup
     .string()
-    .min(8, "Need a longer password😒")
-    .max(12, "too much password😂")
-    .required("why not fill this password😊"),
+    .min(8, "password is too short")
+    .required("password can't be blank"),
 });
 
 export function SignUp() {
@@ -22,10 +21,8 @@ export function SignUp() {
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
       initialValues: { email: "", password: "" },
-      // validate: validateForm,
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
-        // values=[values]
         console.log("onSubmit", values);
         createUser(values);
       },
@@ -75,28 +72,3 @@ export function SignUp() {
     </div>
   );
 }
-
-// const createUser =async (values) => {
-//   const response = await fetch(`${API_URL}/user/register`, {
-//     method: "POST",
-//     body: JSON.stringify({email:values.email,password:values.password}),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   }).then(() => history.push("/UserLogIn"))
-//   // console.log(values);
-//   const json = await response.json();
-//   console.log(json);
-
-// };
-
-// const createUser =async (values) => {
-//   fetch(`${API_URL}/user/register`, {
-//    method: "POST",
-//    body: JSON.stringify({email:values.email,password:values.password}),
-//    headers: {
-//      "Content-Type": "application/json",
-//    },
-//  }).then(() => history.push("/success"))
-
-// };
