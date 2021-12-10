@@ -4,3 +4,10 @@
   text-align: center;
   object-fit: cover;
 }
+
+
+.email-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
