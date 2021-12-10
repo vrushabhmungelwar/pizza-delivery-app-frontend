@@ -16,7 +16,7 @@ export function SuccessfulLogIn() {
   const getMovies = () => {
     fetch(`${API_URL}/pizzalist`)
       .then((data) => data.json())
-      .then((mvs) => setPizzas(mvs));
+      .then((piz) => setPizzas(piz));
   };
   useEffect(getMovies, []);
 

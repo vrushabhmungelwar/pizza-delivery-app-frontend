@@ -7,7 +7,7 @@ import { UserLogIn } from "./userLogIn";
 import { SignUp } from "./signUp";
 import { Success } from "./success";
 import { SuccessfulLogIn } from "./pizza";
-
+import { DashBoard } from "./adminDashboard";
 export default function App() {
   const history = useHistory();
 
@@ -51,6 +51,9 @@ export default function App() {
         </Route>
         <Route exact path="/pizza">
           <SuccessfulLogIn />
+        </Route>
+        <Route exact path="/adminDashboard">
+          <DashBoard />
         </Route>
       </Switch>
     </div>

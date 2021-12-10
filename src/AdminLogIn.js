@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-
+import { API_URL } from "./global-constants";
+import { useHistory } from "react-router-dom";
 const formValidationSchema = yup.object({
   email: yup
     .string()
@@ -14,16 +15,35 @@ const formValidationSchema = yup.object({
 });
 
 export function AdminLogIn() {
+  const history = useHistory();
+
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
       initialValues: { email: "", password: "" },
-      // validate: validateForm,
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
         console.log("onSubmit", values);
+        checkCredentials(values);
       },
     });
 
+    
+  const checkCredentials = async (values) => {
+    const response = await fetch(`${API_URL}/admin/adminlogin`, {
+      method: "POST",
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    if (json.success) {
+      history.push("/adminDashboard");
+    }
+  };
   return (
     <div>
       <h2>hello admin</h2>
