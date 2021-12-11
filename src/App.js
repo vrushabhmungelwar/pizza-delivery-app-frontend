@@ -48,7 +48,7 @@ export default function App() {
           </div>
         </Toolbar>
       </AppBar>
-      <h2 className="header">Welcome to Pizza Mania</h2>
+      <h2 className="header">Welcome to Pizza Shop</h2>
       <Switch>
         <Route exact path="/AdminLogIn">
           <AdminLogIn />
