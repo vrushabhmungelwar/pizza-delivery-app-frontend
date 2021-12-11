@@ -31,7 +31,6 @@ export function AdminLogIn() {
       },
     });
 
-    
   const checkCredentials = async (values) => {
     const response = await fetch(`${API_URL}/admin/adminlogin`, {
       method: "POST",
@@ -46,10 +45,11 @@ export function AdminLogIn() {
     const json = await response.json();
     if (json.success) {
       history.push("/adminDashboard");
+    } else {
+      alert("Invalid Credentials");
     }
   };
   return (
- 
     <div className="signin-container">
       <Box
         sx={{
