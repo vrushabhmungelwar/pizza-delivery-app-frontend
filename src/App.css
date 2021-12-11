@@ -1,5 +1,5 @@
 .App {
-  min-height: 50rem;
+  min-height: 70rem;
   height: auto;
   background: rgb(221, 174, 238);
   background: radial-gradient(
@@ -10,16 +10,29 @@
   text-align: center;
   object-fit: cover;
 }
-.header {
-  /* margin-top: 2rem; */
-  padding-top: 1rem;
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+/* .user-buttons {
+  display: flex;
+  justify-content: space-around;
+} */
+
+.pizza {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 }
 .pizza-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  gap: 24px;
   margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .pizza-poster {

@@ -1,30 +1,16 @@
-import { useState, useEffect } from "react";
-import { API_URL } from "./global-constants";
+import { Card, CardContent } from "@mui/material";
+import { Counter } from "./Counter.js";
 
-function Pizza({ name, img }) {
+export function Pizza({ name, img }) {
   return (
-    <div className="pizza">
+    <Card className="movie-container">
       <img className="pizza-poster" src={img} alt={name} />
-      <h3>{name}</h3>
-    </div>
-  );
-}
-
-export function SuccessfulLogIn() {
-  const [pizzas, setPizzas] = useState([]);
-
-  const getMovies = () => {
-    fetch(`${API_URL}/pizzalist`)
-      .then((data) => data.json())
-      .then((piz) => setPizzas(piz));
-  };
-  useEffect(getMovies, []);
-
-  return (
-    <section className="pizza-container">
-      {pizzas.map(({ name, img, _id }) => (
-        <Pizza key={_id} name={name} img={img} />
-      ))}
-    </section>
+      <CardContent>
+        <div className="pizza">
+          <h3>{name}</h3>
+          <Counter />
+        </div>
+      </CardContent>
+    </Card>
   );
 }

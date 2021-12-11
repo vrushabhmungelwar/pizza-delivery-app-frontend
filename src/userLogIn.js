@@ -44,7 +44,7 @@ export function UserLogIn() {
     });
     const json = await response.json();
     if (json.success) {
-      history.push("/pizza");
+      history.push("/pizzaList");
     }
   };
 

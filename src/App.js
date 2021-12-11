@@ -6,37 +6,49 @@ import { AdminLogIn } from "./AdminLogIn";
 import { UserLogIn } from "./userLogIn";
 import { SignUp } from "./signUp";
 import { Success } from "./success";
-import { SuccessfulLogIn } from "./pizza";
+import { PizzaList } from "./PizzaList";
 import { DashBoard } from "./adminDashboard";
+import { AppBar, Toolbar } from "@mui/material";
 
 export default function App() {
   const history = useHistory();
 
   return (
     <div className="App">
-      <h2 className="header">Welcome to Pizza Mania</h2>
-      <Button
-        variant="text"
-        color="inherit"
-        onClick={() => history.push("/userLogIn")}
+      <AppBar
+        position="static"
+        style={{ marginBottom: "24px" }}
+        color="transparent"
       >
-        User Login
-      </Button>
-      <Button
-        variant="text"
-        color="inherit"
-        onClick={() => history.push("/AdminLogIn")}
-      >
-        Admin Login
-      </Button>
-      <Button
-        variant="text"
-        color="inherit"
-        onClick={() => history.push("/signUp")}
-      >
-        signUp
-      </Button>
+        <Toolbar>
+          <Button
+            variant="text"
+            color="inherit"
+            onClick={() => history.push("/userLogIn")}
+          >
+            User Login
+          </Button>
+          <Button
+            variant="text"
+            color="inherit"
+            onClick={() => history.push("/signUp")}
+          >
+            signUp
+          </Button>
 
+          <div>
+            <Button
+              variant="text"
+              color="inherit"
+              edge="end"
+              onClick={() => history.push("/AdminLogIn")}
+            >
+              Admin Login
+            </Button>
+          </div>
+        </Toolbar>
+      </AppBar>
+      <h2 className="header">Welcome to Pizza Mania</h2>
       <Switch>
         <Route exact path="/AdminLogIn">
           <AdminLogIn />
@@ -50,8 +62,8 @@ export default function App() {
         <Route exact path="/success">
           <Success />
         </Route>
-        <Route exact path="/pizza">
-          <SuccessfulLogIn />
+        <Route exact path="/pizzaList">
+          <PizzaList />
         </Route>
         <Route exact path="/adminDashboard">
           <DashBoard />
