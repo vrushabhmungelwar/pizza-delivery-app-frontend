@@ -9,6 +9,7 @@ import { Success } from "./success";
 import { PizzaList } from "./PizzaList";
 import { DashBoard } from "./adminDashboard";
 import { AppBar, Toolbar } from "@mui/material";
+import { CustomPizza } from "./createPizza";
 
 export default function App() {
   const history = useHistory();
@@ -46,12 +47,10 @@ export default function App() {
               Admin Login
             </Button>
           </div>
-
-
-          
         </Toolbar>
       </AppBar>
       <h2 className="header">Welcome to Pizza Shop</h2>
+      
       <Switch>
         <Route exact path="/AdminLogIn">
           <AdminLogIn />
@@ -70,6 +69,9 @@ export default function App() {
         </Route>
         <Route exact path="/adminDashboard">
           <DashBoard />
+        </Route>
+        <Route exact path="/createPizza">
+          <CustomPizza />
         </Route>
       </Switch>
     </div>
