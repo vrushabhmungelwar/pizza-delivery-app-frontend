@@ -45,6 +45,8 @@ export function UserLogIn() {
     const json = await response.json();
     if (json.success) {
       history.push("/pizzaList");
+    } else {
+      alert("Invalid Credentials");
     }
   };
 
@@ -68,6 +70,7 @@ export function UserLogIn() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 label="email"
+                type="email"
                 error={errors.email && touched.email}
                 helperText={errors.email && touched.email && errors.email}
                 variant="standard"

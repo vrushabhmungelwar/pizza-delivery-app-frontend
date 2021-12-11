@@ -6,6 +6,11 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 const formValidationSchema = yup.object({
+  name: yup
+    .string()
+    .min(2, "name is too short")
+    .required("name can't be blank"),
+
   email: yup
     .string()
     .min(5, "email is too short")
@@ -22,7 +27,7 @@ export function SignUp() {
 
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
-      initialValues: { email: "", password: "" },
+      initialValues: { name: "", email: "", password: "" },
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
         console.log("onSubmit", values);
@@ -33,7 +38,11 @@ export function SignUp() {
   const createUser = async (values) => {
     const response = await fetch(`${API_URL}/user/register`, {
       method: "POST",
-      body: JSON.stringify({ email: values.email, password: values.password }),
+      body: JSON.stringify({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -46,7 +55,6 @@ export function SignUp() {
     }
   };
   return (
-    
     <div className="signin-container">
       <Box
         sx={{
@@ -60,12 +68,25 @@ export function SignUp() {
           <form onSubmit={handleSubmit}>
             <div className="input-container">
               <TextField
+                id="name"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                label="name"
+                type="text"
+                error={errors.name && touched.name}
+                helperText={errors.name && touched.name && errors.name}
+                variant="standard"
+              />
+              <TextField
                 id="email"
                 name="email"
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 label="email"
+                type="email"
                 error={errors.email && touched.email}
                 helperText={errors.email && touched.email && errors.email}
                 variant="standard"
