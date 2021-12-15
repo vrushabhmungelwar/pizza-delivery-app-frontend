@@ -10,12 +10,12 @@ export function PizzaList() {
 
   const [pizzas, setPizzas] = useState([]);
 
-  const getMovies = () => {
+  const getPizzas = () => {
     fetch(`${API_URL}/pizzalist`)
       .then((data) => data.json())
       .then((piz) => setPizzas(piz));
   };
-  useEffect(getMovies, []);
+  useEffect(getPizzas, []);
 
   return (
     <section>
