@@ -3,7 +3,13 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 export function Counter() {
   const [count, setCount] = useState(0);
-  const incrementCount = () => setCount(count + 1);
+  const incrementCount = () => {
+    if (count >= 5) {
+      return;
+    } else {
+      setCount(count + 1);
+    }
+  };
 
   const decrementCount = () => {
     if (count <= 0) {
@@ -21,7 +27,9 @@ export function Counter() {
         aria-label="like"
         color="primary"
       >
-        <Badge color="primary">➕</Badge>
+        <Badge badgeContent={count} color="primary">
+          ➕
+        </Badge>
       </IconButton>
 
       <IconButton
@@ -32,9 +40,6 @@ export function Counter() {
       >
         <Badge color="error">➖</Badge>
       </IconButton>
-      {/* <IconButton> */}
-      <Badge badgeContent={count}>🛒</Badge>
-      {/* </IconButton> */}
     </div>
   );
 }
