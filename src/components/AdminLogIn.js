@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { API_URL } from "./global-constants";
+import { API_URL } from "../helpers/global-constants";
 import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -18,7 +18,7 @@ const formValidationSchema = yup.object({
     .required("password can't be blank"),
 });
 
-export function UserLogIn() {
+export function AdminLogIn() {
   const history = useHistory();
 
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
@@ -32,7 +32,7 @@ export function UserLogIn() {
     });
 
   const checkCredentials = async (values) => {
-    const response = await fetch(`${API_URL}/user/signin`, {
+    const response = await fetch(`${API_URL}/admin/adminlogin`, {
       method: "POST",
       body: JSON.stringify({
         email: values.email,
@@ -44,12 +44,11 @@ export function UserLogIn() {
     });
     const json = await response.json();
     if (json.success) {
-      history.push("/pizzaList");
+      history.push("/adminDashboard");
     } else {
       alert("Invalid Credentials");
     }
   };
-
   return (
     <div className="signin-container">
       <Box
@@ -60,7 +59,7 @@ export function UserLogIn() {
         }}
       >
         <div>
-          <h2>User</h2>
+          <h2>Admin</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
               <TextField
@@ -70,7 +69,6 @@ export function UserLogIn() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 label="email"
-                type="email"
                 error={errors.email && touched.email}
                 helperText={errors.email && touched.email && errors.email}
                 variant="standard"

@@ -1,14 +1,13 @@
-import { useState } from "react";
+// import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
-export function Counter() {
-  const [count, setCount] = useState(0);
+export function Counter({count,setCount}) {
   const incrementCount = () => {
-    if (count >= 5) {
-      return;
-    } else {
+    // if (count >= 5) {
+    //   return;
+    // } else {
       setCount(count + 1);
-    }
+    // }
   };
 
   const decrementCount = () => {
@@ -27,7 +26,7 @@ export function Counter() {
         aria-label="like"
         color="primary"
       >
-        <Badge badgeContent={count} color="primary">
+        <Badge color="primary">
           ➕
         </Badge>
       </IconButton>

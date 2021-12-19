@@ -1,16 +1,12 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { API_URL } from "./global-constants";
+import { API_URL } from "../helpers/global-constants";
 import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-const formValidationSchema = yup.object({
-  name: yup
-    .string()
-    .min(2, "name is too short")
-    .required("name can't be blank"),
 
+const formValidationSchema = yup.object({
   email: yup
     .string()
     .min(5, "email is too short")
@@ -22,24 +18,23 @@ const formValidationSchema = yup.object({
     .required("password can't be blank"),
 });
 
-export function SignUp() {
+export function UserLogIn() {
   const history = useHistory();
 
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
-      initialValues: { name: "", email: "", password: "" },
+      initialValues: { email: "", password: "" },
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
         console.log("onSubmit", values);
-        createUser(values);
+        checkCredentials(values);
       },
     });
 
-  const createUser = async (values) => {
-    const response = await fetch(`${API_URL}/user/register`, {
+  const checkCredentials = async (values) => {
+    const response = await fetch(`${API_URL}/user/signin`, {
       method: "POST",
       body: JSON.stringify({
-        name: values.name,
         email: values.email,
         password: values.password,
       }),
@@ -47,13 +42,14 @@ export function SignUp() {
         "Content-Type": "application/json",
       },
     });
-    // console.log(values);
     const json = await response.json();
-    console.log(json);
     if (json.success) {
-      history.push("/success");
+      history.push("/pizzaList");
+    } else {
+      alert("Invalid Credentials");
     }
   };
+
   return (
     <div className="signin-container">
       <Box
@@ -64,21 +60,9 @@ export function SignUp() {
         }}
       >
         <div>
-          <h2>Create Account</h2>
+          <h2>User</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
-              <TextField
-                id="name"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                label="name"
-                type="text"
-                error={errors.name && touched.name}
-                helperText={errors.name && touched.name && errors.name}
-                variant="standard"
-              />
               <TextField
                 id="email"
                 name="email"
@@ -107,7 +91,7 @@ export function SignUp() {
                 variant="standard"
               />
             </div>
-            <Button type="submit">Sign Up</Button>
+            <Button type="submit">Login</Button>
           </form>
         </div>
       </Box>

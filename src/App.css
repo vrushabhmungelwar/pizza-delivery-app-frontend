@@ -23,7 +23,13 @@
 .pizza {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+.pizza-details {
+  display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 }
 .pizza-container {

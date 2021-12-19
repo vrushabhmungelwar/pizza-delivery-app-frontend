@@ -2,19 +2,21 @@ import "./App.css";
 import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { Switch, Route } from "react-router-dom";
-import { AdminLogIn } from "./AdminLogIn";
-import { UserLogIn } from "./userLogIn";
-import { SignUp } from "./signUp";
-import { Success } from "./success";
-import { PizzaList } from "./PizzaList";
-import { DashBoard } from "./adminDashboard";
+import { AdminLogIn } from "./components/AdminLogIn";
+import { UserLogIn } from "./components/userLogIn";
+import { SignUp } from "./components/signUp";
+import { Success } from "./components/success";
+import { PizzaList } from "./components/PizzaList";
+import { DashBoard } from "./components/adminDashboard";
 import { AppBar, Toolbar } from "@mui/material";
-import { CustomPizza } from "./createPizza";
-
+import { CustomPizza } from "./components/createPizza";
+import Typography from '@mui/material/Typography';
+import {Cart} from "./components/cart"
+import { Home } from "./components/Home";
 export default function App() {
   const history = useHistory();
-
   return (
+   
     <div className="App">
       <AppBar
         position="static"
@@ -36,9 +38,12 @@ export default function App() {
           >
             signUp
           </Button>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <h2 className="header">Pizza Shop</h2>
+          </Typography>
 
-          <div>
             <Button
+              style={{ marginLeft: "auto" }}
               variant="text"
               color="inherit"
               edge="end"
@@ -46,34 +51,49 @@ export default function App() {
             >
               Admin Login
             </Button>
-          </div>
+            <Button
+              variant="text"
+              color="inherit"
+              edge="end"
+              onClick={() => history.push("/cart")}
+              badge
+            >
+            
+            </Button>
         </Toolbar>
       </AppBar>
-      <h2 className="header">Welcome to Pizza Shop</h2>
+      
       
       <Switch>
-        <Route exact path="/AdminLogIn">
+      <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/AdminLogIn">
           <AdminLogIn />
         </Route>
-        <Route exact path="/userLogIn">
+        <Route path="/userLogIn">
           <UserLogIn />
         </Route>
-        <Route exact path="/signUp">
+        <Route path="/signUp">
           <SignUp />
         </Route>
-        <Route exact path="/success">
+        <Route path="/success">
           <Success />
         </Route>
-        <Route exact path="/pizzaList">
+        <Route path="/pizzaList">
           <PizzaList />
         </Route>
-        <Route exact path="/adminDashboard">
+        <Route path="/adminDashboard">
           <DashBoard />
         </Route>
-        <Route exact path="/createPizza">
+        <Route path="/createPizza">
           <CustomPizza />
+        </Route>
+        <Route path="/cart">
+          <Cart />
         </Route>
       </Switch>
     </div>
+   
   );
 }

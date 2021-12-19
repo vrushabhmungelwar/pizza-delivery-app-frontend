@@ -1,12 +1,16 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { API_URL } from "./global-constants";
+import { API_URL } from "../helpers/global-constants";
 import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
 const formValidationSchema = yup.object({
+  name: yup
+    .string()
+    .min(2, "name is too short")
+    .required("name can't be blank"),
+
   email: yup
     .string()
     .min(5, "email is too short")
@@ -18,23 +22,24 @@ const formValidationSchema = yup.object({
     .required("password can't be blank"),
 });
 
-export function AdminLogIn() {
+export function SignUp() {
   const history = useHistory();
 
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
     useFormik({
-      initialValues: { email: "", password: "" },
+      initialValues: { name: "", email: "", password: "" },
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
         console.log("onSubmit", values);
-        checkCredentials(values);
+        createUser(values);
       },
     });
 
-  const checkCredentials = async (values) => {
-    const response = await fetch(`${API_URL}/admin/adminlogin`, {
+  const createUser = async (values) => {
+    const response = await fetch(`${API_URL}/user/register`, {
       method: "POST",
       body: JSON.stringify({
+        name: values.name,
         email: values.email,
         password: values.password,
       }),
@@ -42,11 +47,11 @@ export function AdminLogIn() {
         "Content-Type": "application/json",
       },
     });
+    // console.log(values);
     const json = await response.json();
+    console.log(json);
     if (json.success) {
-      history.push("/adminDashboard");
-    } else {
-      alert("Invalid Credentials");
+      history.push("/success");
     }
   };
   return (
@@ -59,9 +64,21 @@ export function AdminLogIn() {
         }}
       >
         <div>
-          <h2>Admin</h2>
+          <h2>Create Account</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
+              <TextField
+                id="name"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                label="name"
+                type="text"
+                error={errors.name && touched.name}
+                helperText={errors.name && touched.name && errors.name}
+                variant="standard"
+              />
               <TextField
                 id="email"
                 name="email"
@@ -69,6 +86,7 @@ export function AdminLogIn() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 label="email"
+                type="email"
                 error={errors.email && touched.email}
                 helperText={errors.email && touched.email && errors.email}
                 variant="standard"
@@ -89,7 +107,7 @@ export function AdminLogIn() {
                 variant="standard"
               />
             </div>
-            <Button type="submit">Login</Button>
+            <Button type="submit">Sign Up</Button>
           </form>
         </div>
       </Box>

@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { API_URL } from "./global-constants";
-import { Pizza } from "./pizza";
-import { CustomPizza } from "./createPizza";
-import { Switch, Route } from "react-router-dom";
+import { API_URL } from "../helpers/global-constants";
+import { Pizza } from "../helpers/pizza";
 import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
 export function PizzaList() {
+  // const [count, setCount] = useState(0);
   const history = useHistory();
 
   const [pizzas, setPizzas] = useState([]);
+  // const [cart, setCart] = useState([]);
+
 
   const getPizzas = () => {
     fetch(`${API_URL}/pizzalist`)
@@ -19,6 +20,7 @@ export function PizzaList() {
 
   return (
     <section>
+      {/* <div>{count}</div> */}
       <Button
         variant="outlined"
         color="inherit"
@@ -26,18 +28,14 @@ export function PizzaList() {
       >
         Create Pizza
       </Button>
-      
+
       <div className="pizza-container">
-        {pizzas.map(({ name, img, _id }) => (
-          <Pizza key={_id} name={name} img={img} />
+        {pizzas.map(pizza => (
+          <div key={pizza._id}>
+          <Pizza pizza={pizza} key={pizza._id} />
+          </div>
         ))}
-        
       </div>
-      <Switch>
-        <Route exact path="/createPizza">
-          <CustomPizza />
-        </Route>
-      </Switch>
     </section>
   );
 }
