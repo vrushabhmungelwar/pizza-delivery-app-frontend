@@ -52,7 +52,7 @@
 
 //////
 
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@mui/material";
 import Button from "@mui/material/Button";
 
@@ -64,15 +64,26 @@ const Pizza = ({ pizza }) => {
   const addToCart = (item) => {
     dispatch({ type: "ADD", item });
   };
+  const [disable, setDisable] = useState(false);
+
+  // const func1 =()=>{}
 
   return (
-    <Card >
+    <Card>
       <img src={pizza.img} className="pizza-poster" alt={pizza.name} />
       <CardContent>
         <div className="pizza-details">
           <h1>{pizza.name}</h1>
         </div>
-        <Button onClick={() => addToCart(pizza)}>Add to cart</Button>
+        <Button
+          disabled={disable}
+          onClick={() => {
+            addToCart(pizza);
+            setDisable(true);
+          }}
+        >
+          {disable===true ? "Added" : "Add to cart"}
+        </Button>
       </CardContent>
     </Card>
   );
