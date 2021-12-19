@@ -66,8 +66,6 @@ const Pizza = ({ pizza }) => {
   };
   const [disable, setDisable] = useState(false);
 
-  // const func1 =()=>{}
-
   return (
     <Card>
       <img src={pizza.img} className="pizza-poster" alt={pizza.name} />
@@ -82,7 +80,7 @@ const Pizza = ({ pizza }) => {
             setDisable(true);
           }}
         >
-          {disable===true ? "Added" : "Add to cart"}
+          {disable === true ? "Added" : "Add to cart"}
         </Button>
       </CardContent>
     </Card>
