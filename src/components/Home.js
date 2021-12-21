@@ -1,3 +1,21 @@
+import { useHistory } from "react-router-dom";
+import Button from "@mui/material/Button";
+
 export function Home() {
-    return <h2>Welcome to Pizza Mania</h2>;
-  }
+  const history = useHistory();
+
+  return (
+    <div>
+      <h2>Welcome to Pizza Mania</h2>
+      <div className="home-content">
+        <Button
+          variant="text"
+          color="inherit"
+          onClick={() => history.push("/userLogIn")}
+        >
+          Go to Login
+        </Button>
+      </div>
+    </div>
+  );
+}

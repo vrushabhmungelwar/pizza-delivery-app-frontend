@@ -16,7 +16,7 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import { Home } from "./components/Home";
 import { useCart } from "./context/Context";
-import Store from "./components/cart";
+import Cart from "./components/cart";
 
 export default function App() {
   const items = useCart();
@@ -58,7 +58,7 @@ export default function App() {
           </Button>
 
           <IconButton
-            color="primary"
+            color="inherit"
             aria-label="add to shopping cart"
             onClick={() => history.push("/cart")}
           >
@@ -95,7 +95,7 @@ export default function App() {
           <CustomPizza />
         </Route>
         <Route path="/cart">
-          <Store />
+          <Cart />
         </Route>
       </Switch>
     </div>

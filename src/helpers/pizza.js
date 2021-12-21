@@ -59,6 +59,8 @@ import Button from "@mui/material/Button";
 import { useDispatchCart } from "../context/Context";
 
 const Pizza = ({ pizza }) => {
+  // const [varient, setVarient] = useState("small");
+
   const dispatch = useDispatchCart();
 
   const addToCart = (item) => {
@@ -77,7 +79,7 @@ const Pizza = ({ pizza }) => {
           disabled={disable}
           onClick={() => {
             addToCart(pizza);
-            setDisable(true);
+            setDisable(!disable);
           }}
         >
           {disable === true ? "Added" : "Add to cart"}
