@@ -69,8 +69,8 @@ const Pizza = ({ pizza }) => {
   const [disable, setDisable] = useState(false);
 
   return (
-    <Card>
-      <img src={pizza.img} className="pizza-poster" alt={pizza.name} />
+    <Card className="pizzas-container">
+      <img  className="pizza-poster" src={pizza.img} alt={pizza.name} />
       <CardContent>
         <div className="pizza-details">
           <h1>{pizza.name}</h1>

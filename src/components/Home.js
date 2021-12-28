@@ -8,12 +8,13 @@ export function Home() {
     <div>
       <h2>Welcome to Pizza Mania</h2>
       <div className="home-content">
+      
         <Button
           variant="text"
           color="inherit"
-          onClick={() => history.push("/userLogIn")}
+          onClick={() => history.push("/pizzaList")}
         >
-          Go to Login
+          Buy pizza
         </Button>
       </div>
     </div>

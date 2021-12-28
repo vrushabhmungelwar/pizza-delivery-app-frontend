@@ -1,5 +1,5 @@
 .App {
-  min-height: 70rem;
+  min-height: 75rem;
   height: auto;
   background: rgb(221, 174, 238);
   background: radial-gradient(
@@ -10,7 +10,15 @@
   text-align: center;
   object-fit: cover;
 }
-
+.pizzas-container {
+  height: 480px;
+  width: 319px;
+}
+.pizza-poster {
+  height: 20rem;
+  width: 20rem;
+  object-fit: cover;
+}
 .button-container {
   display: flex;
   justify-content: space-between;
@@ -43,10 +51,20 @@
   justify-content: center;
 }
 
-.pizza-poster {
-  height: 20rem;
-  width: 20rem;
+
+.pizza-poster-cart {
+  height: 10rem;
+  width: 10rem;
   border-radius: 10px;
+}
+.cart-content-child {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 13px 11px 14px 2px rgba(0,0,0,0.79);
+  -webkit-box-shadow: 13px 11px 14px 2px rgba(0,0,0,0.79);
+  -moz-box-shadow: 13px 11px 14px 2px rgba(0,0,0,0.79);
 }
 .signin-container {
   margin-top: 8rem;
