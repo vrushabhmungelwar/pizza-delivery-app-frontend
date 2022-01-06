@@ -6,15 +6,21 @@ import Button from "@mui/material/Button";
 export function PizzaList() {
   const history = useHistory();
 
-  const [pizzas, setPizzas] = useState([]);
+  // const [pizzas, setPizzas] = useState(
+  //   JSON.parse(localStorage.getItem("pizzas") || "[]"));
+    const [pizzas, setPizzas] = useState([])
+
 
   const getPizzas = () => {
     fetch(`${API_URL}/pizzalist`)
       .then((data) => data.json())
-      .then((piz) => setPizzas(piz));
+      .then((piz) => setPizzas(piz))
+      // .then(localStorage.setItem("pizzas", JSON.stringify(pizzas)));
   };
+  // useEffect(getPizzas, [pizzas]);
   useEffect(getPizzas, []);
 
+const pizzas1 = pizzas;
   return (
     <section>
       <Button
@@ -26,7 +32,7 @@ export function PizzaList() {
       </Button>
 
       <div className="pizza-container">
-        {pizzas.map((pizza) => (
+        {pizzas1.map((pizza) => (
           <div key={pizza._id}>
             <Pizza pizza={pizza} key={pizza._id} />
           </div>
