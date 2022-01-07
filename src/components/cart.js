@@ -54,15 +54,6 @@ export default function Cart() {
     return (
       <main>
         <h2>Cart is empty</h2>
-        <Button
-          style={{ marginLeft: "auto" }}
-          variant="text"
-          color="inherit"
-          edge="end"
-          onClick={() => history.push("/pizzaList")}
-        >
-          Admin Login
-        </Button>
       </main>
     );
   }
