@@ -30,7 +30,7 @@ export function SignUp() {
       initialValues: { name: "", email: "", password: "" },
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
-        console.log("onSubmit", values);
+        // console.log("onSubmit", values);
         createUser(values);
       },
     });
@@ -49,9 +49,12 @@ export function SignUp() {
     });
     // console.log(values);
     const json = await response.json();
-    console.log(json);
-    if (json.success) {
+    // console.log(json);
+    if (json.success===true) {
       history.push("/success");
+    }
+    else {
+      alert(json.message)
     }
   };
   return (

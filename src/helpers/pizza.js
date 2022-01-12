@@ -64,6 +64,7 @@ const Pizza = ({ pizza }) => {
   const dispatch = useDispatchCart();
 
   const addToCart = (item) => {
+    console.log(item)
     dispatch({ type: "ADD", item });
   };
   const [disable, setDisable] = useState(false);

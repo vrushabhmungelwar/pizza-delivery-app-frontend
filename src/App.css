@@ -1,12 +1,8 @@
 .App {
   min-height: 75rem;
   height: auto;
-  background: rgb(221, 174, 238);
-  background: radial-gradient(
-    circle,
-    rgba(221, 174, 238, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+  background: rgb(151,255,246);
+  background: linear-gradient(90deg, rgba(151,255,246,1) 12%, rgba(9,121,110,1) 100%);
   text-align: center;
   object-fit: cover;
 }

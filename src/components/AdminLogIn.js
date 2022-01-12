@@ -26,7 +26,7 @@ export function AdminLogIn() {
       initialValues: { email: "", password: "" },
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
-        console.log("onSubmit", values);
+        // console.log("onSubmit", values);
         checkCredentials(values);
       },
     });
@@ -43,6 +43,7 @@ export function AdminLogIn() {
       },
     });
     const json = await response.json();
+    // console.log(json);
     if (json.success) {
       history.push("/adminDashboard");
     } else {

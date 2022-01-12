@@ -26,7 +26,7 @@ export function UserLogIn() {
       initialValues: { email: "", password: "" },
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
-        console.log("onSubmit", values);
+        // console.log("onSubmit", values);
         checkCredentials(values);
       },
     });
@@ -43,7 +43,9 @@ export function UserLogIn() {
       },
     });
     const json = await response.json();
+    // console.log(json);
     if (json.success) {
+       localStorage.setItem("token", json.token);
       history.push("/pizzaList");
     } else {
       alert("Invalid Credentials");

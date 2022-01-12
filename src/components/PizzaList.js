@@ -3,24 +3,34 @@ import { API_URL } from "../helpers/global-constants";
 import Pizza from "../helpers/pizza";
 import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
+import jsonwebtoken from "jsonwebtoken";
 export function PizzaList() {
   const history = useHistory();
 
-  // const [pizzas, setPizzas] = useState(
-  //   JSON.parse(localStorage.getItem("pizzas") || "[]"));
-    const [pizzas, setPizzas] = useState([])
-
+  const [pizzas, setPizzas] = useState([]);
 
   const getPizzas = () => {
-    fetch(`${API_URL}/pizzalist`)
-      .then((data) => data.json())
-      .then((piz) => setPizzas(piz))
-      // .then(localStorage.setItem("pizzas", JSON.stringify(pizzas)));
+    const token = localStorage.getItem("token");
+    var decoded = jsonwebtoken.decode(token);
+    if (!token) {
+      history.push("/userLogIn");
+      alert("Need to login first");
+    } else {
+      if (decoded.exp * 1000 < Date.now()) {
+        history.push("/userLogIn");
+      }
+      fetch(`${API_URL}/pizzalist`, {
+        headers: {
+          "x-auth-token": token,
+        },
+      })
+        .then((data) => data.json())
+        .then((piz) => setPizzas(piz));
+    }
   };
-  // useEffect(getPizzas, [pizzas]);
-  useEffect(getPizzas, []);
+  useEffect(getPizzas, [history]);
 
-const pizzas1 = pizzas;
+  const pizzas1 = pizzas;
   return (
     <section>
       <Button

@@ -3,23 +3,10 @@ import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-
-// import { Card, CardContent } from "@mui/material";
-
 import { useCart, useDispatchCart } from "../context/Context";
+
 export const CartItem = ({ pizza, index, handleRemove }) => {
   return (
-    // <div className="pizza-container">
-    //   <Card>
-    //     <img src={pizza.img} className="pizza-poster" alt={pizza.name} />
-    //     <CardContent>
-    //       <div className="pizza-details">
-    //         <h1>{pizza.name}</h1>
-    //       </div>
-    //       <Button onClick={() => handleRemove(index)}>Remove from cart</Button>
-    //     </CardContent>
-    //   </Card>
-    // </div>
     <nav>
       <List>
       <div className="cart-content-child">
@@ -44,6 +31,7 @@ export const CartItem = ({ pizza, index, handleRemove }) => {
 export default function Cart() {
   const history = useHistory();
   const items = useCart();
+  console.log(items)
   const dispatch = useDispatchCart();
 
   const handleRemove = (index) => {
