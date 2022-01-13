@@ -45,7 +45,7 @@ export function UserLogIn() {
     const json = await response.json();
     // console.log(json);
     if (json.success) {
-       localStorage.setItem("token", json.token);
+      localStorage.setItem("token", json.token);
       history.push("/pizzaList");
     } else {
       alert("Invalid Credentials");
@@ -53,7 +53,14 @@ export function UserLogIn() {
   };
 
   return (
+    <>
+      
     <div className="signin-container">
+    <div className="demo">
+        <h3>Demo Credentials</h3>
+        <h5>Email: johndoe@gmail.com</h5>
+        <h5>Password: johndoe1</h5>
+      </div>
       <Box
         sx={{
           width: 300,
@@ -61,7 +68,7 @@ export function UserLogIn() {
           backgroundColor: "primary",
         }}
       >
-        <div>
+        <div className="signin-box" >
           <h2>User</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
@@ -98,5 +105,6 @@ export function UserLogIn() {
         </div>
       </Box>
     </div>
+    </>
   );
 }
