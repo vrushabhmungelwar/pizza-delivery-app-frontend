@@ -29,12 +29,20 @@ export default function App() {
         color="transparent"
       >
         <Toolbar>
-        <Button
+          <Button
             variant="text"
             color="inherit"
             onClick={() => history.push("/")}
           >
             Home
+          </Button>
+
+          <Button
+            variant="text"
+            color="inherit"
+            onClick={() => history.push("/pizzaList")}
+          >
+            Buy pizza
           </Button>
           <Button
             variant="text"
