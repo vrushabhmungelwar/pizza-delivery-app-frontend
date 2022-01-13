@@ -29,6 +29,13 @@ export default function App() {
         color="transparent"
       >
         <Toolbar>
+        <Button
+            variant="text"
+            color="inherit"
+            onClick={() => history.push("/")}
+          >
+            Home
+          </Button>
           <Button
             variant="text"
             color="inherit"
