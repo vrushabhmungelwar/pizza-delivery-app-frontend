@@ -54,57 +54,56 @@ export function UserLogIn() {
 
   return (
     <>
-      
-    <div className="signin-container">
-    <div className="demo">
-        <h3>Demo Credentials</h3>
-        <h5>Email: johndoe@gmail.com</h5>
-        <h5>Password: johndoe1</h5>
-      </div>
-      <Box
-        sx={{
-          width: 300,
-          height: 220,
-          backgroundColor: "primary",
-        }}
-      >
-        <div className="signin-box" >
-          <h2>User</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="input-container">
-              <TextField
-                id="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                label="email"
-                type="email"
-                error={errors.email && touched.email}
-                helperText={errors.email && touched.email && errors.email}
-                variant="standard"
-              />
-
-              <TextField
-                id="password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                label="password"
-                type="password"
-                error={errors.password && touched.password}
-                helperText={
-                  errors.password && touched.password && errors.password
-                }
-                variant="standard"
-              />
-            </div>
-            <Button type="submit">Login</Button>
-          </form>
+      <div className="signin-container">
+        <div className="demo">
+          <h3>Demo Credentials</h3>
+          <h5>Email: johndoe@gmail.com</h5>
+          <h5>Password: johndoe1</h5>
         </div>
-      </Box>
-    </div>
+        <Box
+          sx={{
+            width: 300,
+            height: 220,
+            backgroundColor: "primary",
+          }}
+        >
+          <div className="signin-box">
+            <h2>User</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="input-container">
+                <TextField
+                  id="email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  label="email"
+                  type="email"
+                  error={errors.email && touched.email}
+                  helperText={errors.email && touched.email && errors.email}
+                  variant="standard"
+                />
+
+                <TextField
+                  id="password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  label="password"
+                  type="password"
+                  error={errors.password && touched.password}
+                  helperText={
+                    errors.password && touched.password && errors.password
+                  }
+                  variant="standard"
+                />
+              </div>
+              <Button type="submit">Login</Button>
+            </form>
+          </div>
+        </Box>
+      </div>
     </>
   );
 }
