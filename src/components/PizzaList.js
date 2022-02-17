@@ -30,7 +30,6 @@ export function PizzaList() {
   };
   useEffect(getPizzas, [history]);
 
-  const pizzas1 = pizzas;
   return (
     <section>
       <Button
@@ -42,7 +41,7 @@ export function PizzaList() {
       </Button>
 
       <div className="pizza-container">
-        {pizzas1.map((pizza) => (
+        {pizzas.map((pizza) => (
           <div key={pizza._id}>
             <Pizza pizza={pizza} key={pizza._id} />
           </div>
