@@ -6,11 +6,11 @@ import ListItem from "@mui/material/ListItem";
 import { useCart, useDispatchCart } from "../context/Context";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-// import { useState } from "react";
+import { useState } from "react";
 import { Counter } from "../helpers/Counter";
-export const CartItem = ({ pizza, index, handleRemove, count, setCount }) => {
-  // const [count, setCount] = useState(1);
-  console.log(count);
+export const CartItem = ({ pizza, index, handleRemove }) => {
+  const [count, setCount] = useState(1);
+  // console.log(count);
   return (
     <nav>
       <List>
@@ -39,7 +39,7 @@ export const CartItem = ({ pizza, index, handleRemove, count, setCount }) => {
   );
 };
 
-export default function Cart({ count, setCount }) {
+export default function Cart() {
   const history = useHistory();
   const items = useCart();
   const dispatch = useDispatchCart();
@@ -78,8 +78,6 @@ export default function Cart({ count, setCount }) {
             key={index}
             pizza={item}
             index={index}
-            count={count}
-            setCount={setCount}
           />
         ))}
       </main>

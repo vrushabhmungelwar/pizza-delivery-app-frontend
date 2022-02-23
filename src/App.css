@@ -87,7 +87,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.demo {
+/* .demo {
   font-style: italic;
   margin-top: 20px;
   height: 10rem;
@@ -95,11 +95,8 @@
   background-color: inherit;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
+} */
 .signin-box {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.header {
-  padding-right: 18%;
 }

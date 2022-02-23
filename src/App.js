@@ -19,12 +19,22 @@ import { useCart } from "./context/Context";
 import Cart from "./components/cart";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
+import { isExpired, decodeToken } from "react-jwt";
 
 export default function App() {
+  const token = localStorage.getItem("token");
+  const myDecodedToken = decodeToken(token);
+  const isMyTokenExpired = isExpired(token);
+  const [login, setLogin] = useState(
+    myDecodedToken && isMyTokenExpired === false ? true : false
+  );
   const items = useCart();
   const history = useHistory();
-  const [count, setCount] = useState(1);
-
+  function Logout() {
+    localStorage.removeItem("token");
+    setLogin(false);
+    history.push("/userLogIn");
+  }
   return (
     <div className="App">
       <AppBar
@@ -40,51 +50,61 @@ export default function App() {
           >
             Home
           </Button>
-
-          <Button
-            variant="text"
-            color="inherit"
-            onClick={() => history.push("/pizzaList")}
-          >
-            Buy pizza
-          </Button>
-          <Button
-            variant="text"
-            color="inherit"
-            onClick={() => history.push("/userLogIn")}
-          >
-            User Login
-          </Button>
-          <Button
-            variant="text"
-            color="inherit"
-            onClick={() => history.push("/signUp")}
-          >
-            signUp
-          </Button>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <h2 className="header">Pizza Shop</h2>
+          {login === true ? (
+            <Button
+              variant="text"
+              color="inherit"
+              onClick={() => history.push("/pizzaList")}
+            >
+              Pizzas
+            </Button>
+          ) : (
+            <></>
+          )}
+          <Typography variant="h3" component="div" sx={{ flexGrow: 1, ml: 8 }}>
+            Pizza Shop
           </Typography>
 
-          <Button
-            style={{ marginLeft: "auto" }}
-            variant="text"
-            color="inherit"
-            edge="end"
-            onClick={() => history.push("/AdminLogIn")}
-          >
-            Admin Login
-          </Button>
+          {login === false ? (
+            <Button
+              style={{ marginLeft: "auto" }}
+              variant="text"
+              color="inherit"
+              edge="end"
+              onClick={() => history.push("/AdminLogIn")}
+            >
+              Admin
+            </Button>
+          ) : (
+            <></>
+          )}
 
-          <IconButton
-            color="inherit"
-            aria-label="add to shopping cart"
-            onClick={() => history.push("/cart")}
-          >
-            <Badge badgeContent={items.length}>
-              <AddShoppingCartIcon />
-            </Badge>
-          </IconButton>
+          {login === true ? (
+            <IconButton
+              color="inherit"
+              aria-label="add to shopping cart"
+              onClick={() => history.push("/cart")}
+            >
+              <Badge badgeContent={items.length}>
+                <AddShoppingCartIcon />
+              </Badge>
+            </IconButton>
+          ) : (
+            <></>
+          )}
+          {login === true ? (
+            <Button color="inherit" sx={{ ml: "auto" }} onClick={Logout}>
+              Logout
+            </Button>
+          ) : (
+            <Button
+              variant="text"
+              color="inherit"
+              onClick={() => history.push("/userLogIn")}
+            >
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
 
@@ -96,7 +116,7 @@ export default function App() {
           <AdminLogIn />
         </Route>
         <Route path="/userLogIn">
-          <UserLogIn />
+          <UserLogIn setLogin={setLogin} />
         </Route>
         <Route path="/signUp">
           <SignUp />
@@ -109,12 +129,7 @@ export default function App() {
         </Route>
         <ProtectedRoute path="/pizzaList" Proute={PizzaList} />
         <ProtectedRoute path="/createPizza" Proute={CustomPizza} />
-        <ProtectedRoute
-          path="/cart"
-          Proute={Cart}
-          count={count}
-          setCount={setCount}
-        />
+        <ProtectedRoute path="/cart" Proute={Cart} />
       </Switch>
     </div>
   );

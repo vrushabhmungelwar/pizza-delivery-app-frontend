@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { Container, CssBaseline, Grid, Typography } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 const formValidationSchema = yup.object({
   name: yup
     .string()
@@ -23,6 +26,7 @@ const formValidationSchema = yup.object({
 });
 
 export function SignUp() {
+  const theme = createTheme();
   const history = useHistory();
 
   const { handleSubmit, handleChange, values, handleBlur, errors, touched } =
@@ -30,7 +34,6 @@ export function SignUp() {
       initialValues: { name: "", email: "", password: "" },
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
-        // console.log("onSubmit", values);
         createUser(values);
       },
     });
@@ -47,73 +50,90 @@ export function SignUp() {
         "Content-Type": "application/json",
       },
     });
-    // console.log(values);
     const json = await response.json();
-    // console.log(json);
-    if (json.success===true) {
+    if (json.success === true) {
       history.push("/success");
-    }
-    else {
-      alert(json.message)
+    } else {
+      alert(json.message);
     }
   };
   return (
-    <div className="signin-container">
-      <Box
-        sx={{
-          width: 300,
-          height: 220,
-          backgroundColor: "primary",
-        }}
-      >
-        <div>
-          <h2>Create Account</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="input-container">
-              <TextField
-                id="name"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                label="name"
-                type="text"
-                error={errors.name && touched.name}
-                helperText={errors.name && touched.name && errors.name}
-                variant="standard"
-              />
-              <TextField
-                id="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                label="email"
-                type="email"
-                error={errors.email && touched.email}
-                helperText={errors.email && touched.email && errors.email}
-                variant="standard"
-              />
-
-              <TextField
-                id="password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                label="password"
-                type="password"
-                error={errors.password && touched.password}
-                helperText={
-                  errors.password && touched.password && errors.password
-                }
-                variant="standard"
-              />
-            </div>
-            <Button type="submit">Sign Up</Button>
-          </form>
-        </div>
-      </Box>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box sx={{ mt: 3 }}>
+            <form onSubmit={handleSubmit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    id="name"
+                    name="name"
+                    fullWidth
+                    required
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="Full Name"
+                    type="text"
+                    error={errors.name && touched.name}
+                    helperText={errors.name && touched.name && errors.name}
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="email"
+                    name="email"
+                    fullWidth
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="Email"
+                    type="email"
+                    error={errors.email && touched.email}
+                    helperText={errors.email && touched.email && errors.email}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="password"
+                    name="password"
+                    fullWidth
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="Password"
+                    type="password"
+                    error={errors.password && touched.password}
+                    helperText={
+                      errors.password && touched.password && errors.password
+                    }
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+            </form>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }

@@ -1,7 +1,7 @@
 import { Route, Redirect } from "react-router-dom";
 import { isExpired, decodeToken } from "react-jwt";
 
-const ProtectedRoute = ({ Proute, count, setCount }) => {
+const ProtectedRoute = ({ Proute }) => {
   const token = localStorage.getItem("token");
   const myDecodedToken = decodeToken(token);
   const isMyTokenExpired = isExpired(token);
@@ -9,7 +9,7 @@ const ProtectedRoute = ({ Proute, count, setCount }) => {
     <Route
       render={() =>
         myDecodedToken && isMyTokenExpired === false ? (
-          <Proute count={count} setCount={setCount} />
+          <Proute />
         ) : (
           <Redirect to="/userLogIn" />
         )
