@@ -102,7 +102,7 @@ export default function App() {
               color="inherit"
               onClick={() => history.push("/userLogIn")}
             >
-              Login
+              User
             </Button>
           )}
         </Toolbar>
