@@ -3,7 +3,7 @@ import { API_URL } from "../helpers/global-constants";
 import Pizza from "../helpers/pizza";
 import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
-import jsonwebtoken from "jsonwebtoken";
+// import jsonwebtoken from "jsonwebtoken";
 export function PizzaList() {
   const history = useHistory();
 
@@ -11,22 +11,21 @@ export function PizzaList() {
 
   const getPizzas = () => {
     const token = localStorage.getItem("token");
-    var decoded = jsonwebtoken.decode(token);
+    // var decoded = jsonwebtoken.decode(token);
     if (!token) {
       history.push("/userLogIn");
       alert("Need to login first");
-    } else {
-      if (decoded.exp * 1000 < Date.now()) {
-        history.push("/userLogIn");
-      }
-      fetch(`${API_URL}/pizzalist`, {
-        headers: {
-          "x-auth-token": token,
-        },
-      })
-        .then((data) => data.json())
-        .then((piz) => setPizzas(piz));
     }
+    // if (decoded.exp * 1000 < Date.now()) {
+    //   history.push("/userLogIn");
+    // }
+    fetch(`${API_URL}/pizzalist`, {
+      headers: {
+        "x-auth-token": token,
+      },
+    })
+      .then((data) => data.json())
+      .then((piz) => setPizzas(piz));
   };
   useEffect(getPizzas, [history]);
 

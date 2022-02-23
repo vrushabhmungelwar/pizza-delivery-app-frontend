@@ -17,6 +17,7 @@ import Badge from "@mui/material/Badge";
 import { Home } from "./components/Home";
 import { useCart } from "./context/Context";
 import Cart from "./components/cart";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   const items = useCart();
@@ -100,18 +101,12 @@ export default function App() {
         <Route path="/success">
           <Success />
         </Route>
-        <Route path="/pizzaList">
-          <PizzaList />
-        </Route>
         <Route path="/adminDashboard">
           <DashBoard />
         </Route>
-        <Route path="/createPizza">
-          <CustomPizza />
-        </Route>
-        <Route path="/cart">
-          <Cart />
-        </Route>
+        <ProtectedRoute path="/pizzaList" Proute={PizzaList} />
+        <ProtectedRoute path="/createPizza" Proute={CustomPizza} />
+        <ProtectedRoute path="/cart" Proute={Cart} />
       </Switch>
     </div>
   );
