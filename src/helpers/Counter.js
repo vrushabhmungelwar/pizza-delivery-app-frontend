@@ -1,17 +1,16 @@
-// import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
-export function Counter({count,setCount}) {
+export function Counter({ count, setCount }) {
   const incrementCount = () => {
-    // if (count >= 5) {
-    //   return;
-    // } else {
+    if (count >= 10) {
+      return;
+    } else {
       setCount(count + 1);
-    // }
+    }
   };
 
   const decrementCount = () => {
-    if (count <= 0) {
+    if (count <= 1) {
       return;
     } else {
       setCount(count - 1);
@@ -26,11 +25,13 @@ export function Counter({count,setCount}) {
         aria-label="like"
         color="primary"
       >
-        <Badge color="primary">
-          ➕
-        </Badge>
+        <Badge color="primary">➕</Badge>
       </IconButton>
-
+      <input
+        value={count}
+        readOnly
+        style={{ width: 30, textAlign: "center" }}
+      />
       <IconButton
         className="likes-dislikes "
         onClick={decrementCount}

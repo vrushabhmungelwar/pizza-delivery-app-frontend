@@ -18,10 +18,13 @@ import { Home } from "./components/Home";
 import { useCart } from "./context/Context";
 import Cart from "./components/cart";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { useState } from "react";
 
 export default function App() {
   const items = useCart();
   const history = useHistory();
+  const [count, setCount] = useState(1);
+
   return (
     <div className="App">
       <AppBar
@@ -106,7 +109,12 @@ export default function App() {
         </Route>
         <ProtectedRoute path="/pizzaList" Proute={PizzaList} />
         <ProtectedRoute path="/createPizza" Proute={CustomPizza} />
-        <ProtectedRoute path="/cart" Proute={Cart} />
+        <ProtectedRoute
+          path="/cart"
+          Proute={Cart}
+          count={count}
+          setCount={setCount}
+        />
       </Switch>
     </div>
   );
