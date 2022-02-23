@@ -19,10 +19,6 @@
   width: 20rem;
   object-fit: cover;
 }
-.button-container {
-  display: flex;
-  justify-content: space-between;
-}
 .home-content {
   display: flex;
   flex-wrap: wrap;
