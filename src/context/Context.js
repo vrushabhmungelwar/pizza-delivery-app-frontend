@@ -17,7 +17,10 @@ const reducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(
+    reducer,
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
 
   return (
     <CartDispatchContext.Provider value={dispatch}>

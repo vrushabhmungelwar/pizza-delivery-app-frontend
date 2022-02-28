@@ -31,9 +31,11 @@ export default function App() {
   const items = useCart();
   const history = useHistory();
   function Logout() {
-    localStorage.removeItem("token");
+    localStorage.clear();
+    sessionStorage.clear();
     setLogin(false);
-    history.push("/userLogIn");
+    history.push("/");
+    window.location.reload();
   }
   return (
     <div className="App">
